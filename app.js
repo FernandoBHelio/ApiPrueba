@@ -1,4 +1,4 @@
-require('dotenv').config(); // 💡 Cargar variables de entorno primero
+require('dotenv').config(); // Cargar variables de entorno primero
 
 const express = require('express');
 const app = express();
@@ -14,6 +14,11 @@ let datos = {
   nombre: 'Franklin',
   profesion: 'Desarrollador'
 };
+
+// Ruta raíz para confirmar que la API funciona
+app.get('/', (req, res) => {
+  res.send('API funcionando correctamente');
+});
 
 // GET - Obtener los datos
 app.get('/api/datos', (req, res) => {
@@ -31,10 +36,6 @@ app.put('/api/datos', (req, res) => {
     mensaje: 'Datos actualizados correctamente',
     datos
   });
-});
-
-app.get('/', (req, res) => {
-  res.send('API funcionando correctamente');
 });
 
 // DELETE - Eliminar los datos
