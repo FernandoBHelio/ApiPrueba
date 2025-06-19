@@ -33,6 +33,10 @@ app.put('/api/datos', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+  res.send('API funcionando correctamente');
+});
+
 // DELETE - Eliminar los datos
 app.delete('/api/datos', (req, res) => {
   datos = {};
