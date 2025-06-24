@@ -8,11 +8,21 @@ const port = process.env.PORT || 3000;
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Base de datos simulada
+// Base de datos simulada con más datos
 let datos = {
   id: 1,
   nombre: 'Fernando',
-  profesion: 'Desarrollador'
+  profesion: 'Desarrollador',
+  edad: 28,
+  correo: 'fernando@example.com',
+  telefono: '+50688889999',
+  direccion: 'San José, Costa Rica',
+  habilidades: ['JavaScript', 'Node.js', 'React'],
+  experiencia: 5, // años
+  idiomas: ['Español', 'Inglés'],
+  disponible: true,
+  github: 'https://github.com/fernandoDev',
+  linkedin: 'https://linkedin.com/in/fernandoDev'
 };
 
 // Ruta raíz para confirmar que la API funciona
@@ -27,10 +37,8 @@ app.get('/api/datos', (req, res) => {
 
 // PUT - Actualizar los datos
 app.put('/api/datos', (req, res) => {
-  const { nombre, profesion } = req.body;
-
-  if (nombre) datos.nombre = nombre;
-  if (profesion) datos.profesion = profesion;
+  // Permitir actualización parcial
+  Object.assign(datos, req.body);
 
   res.json({
     mensaje: 'Datos actualizados correctamente',
